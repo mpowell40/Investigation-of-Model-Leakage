@@ -1,0 +1,37 @@
+seq,file,class,prompt_id,rep,search_setting,prompt,status
+1,base_s1_pB02_r01.pcapng,base,B02,1,on,Count to five.,done
+2,base_s1_pB01_r01.pcapng,base,B01,1,on,Say hello.,done
+3,base_s1_pB04_r01.pcapng,base,B04,1,on,What's two plus two?,done
+4,base_s1_pB03_r01.pcapng,base,B03,1,on,Say the word banana.,done
+5,tool_static_s1_pT01_r01.pcapng,static,T01,1,on,What's Atlanta's weather usually like in October? Keep it to one or two sentences.,done
+6,tool_search_s1_pT02_r01.pcapng,search,T02,1,on,Who won the most recent Braves game? Keep it to one or two sentences.,done
+7,tool_search_s1_pT03_r01.pcapng,search,T03,1,on,What's Apple's stock price today? Keep it to one or two sentences.,done
+8,tool_search_s1_pT04_r01.pcapng,search,T04,1,on,What's the biggest news story today? Keep it to one or two sentences.,done
+9,tool_search_s1_pT01_r01.pcapng,search,T01,1,on,What's the weather in Atlanta right now? Keep it to one or two sentences.,done
+10,tool_static_s1_pT05_r01.pcapng,static,T05,1,on,Who created Bitcoin? Keep it to one or two sentences.,done
+11,tool_static_s1_pT02_r01.pcapng,static,T02,1,on,How many players are on a baseball team? Keep it to one or two sentences.,done
+12,tool_static_s1_pT03_r01.pcapng,static,T03,1,on,What year was Apple founded? Keep it to one or two sentences.,done
+13,tool_static_s1_pT06_r01.pcapng,static,T06,1,on,What was SpaceX's first rocket? Keep it to one or two sentences.,done
+14,tool_search_s1_pT05_r01.pcapng,search,T05,1,on,What's the current price of Bitcoin? Keep it to one or two sentences.,done
+15,tool_search_s1_pT06_r01.pcapng,search,T06,1,on,When is the next SpaceX launch? Keep it to one or two sentences.,done
+16,tool_search_s1_pT08_r01.pcapng,search,T08,1,on,What's the newest iPhone model? Keep it to one or two sentences.,done
+17,tool_static_s1_pT08_r01.pcapng,static,T08,1,on,What year did the first iPhone come out? Keep it to one or two sentences.,done
+18,tool_static_s1_pT04_r01.pcapng,static,T04,1,on,What was the biggest news story of 1969? Keep it to one or two sentences.,done
+19,tool_search_s1_pT07_r01.pcapng,search,T07,1,on,Are there traffic delays on I-85 right now? Keep it to one or two sentences.,done
+20,tool_static_s1_pT07_r01.pcapng,static,T07,1,on,Where does I-85 start and end? Keep it to one or two sentences.,done
+21,tool_search_s1_pT07_r02.pcapng,search,T07,2,on,Are there traffic delays on I-85 right now? Keep it to one or two sentences.,done
+22,tool_search_s1_pT06_r02.pcapng,search,T06,2,on,When is the next SpaceX launch? Keep it to one or two sentences.,done
+23,tool_static_s1_pT04_r02.pcapng,static,T04,2,on,What was the biggest news story of 1969? Keep it to one or two sentences.,done
+24,tool_static_s1_pT05_r02.pcapng,static,T05,2,on,Who created Bitcoin? Keep it to one or two sentences.,done
+25,tool_static_s1_pT02_r02.pcapng,static,T02,2,on,How many players are on a baseball team? Keep it to one or two sentences.,done
+26,tool_static_s1_pT03_r02.pcapng,static,T03,2,on,What year was Apple founded? Keep it to one or two sentences.,done
+27,tool_static_s1_pT06_r02.pcapng,static,T06,2,on,What was SpaceX's first rocket? Keep it to one or two sentences.,done
+28,tool_search_s1_pT03_r02.pcapng,search,T03,2,on,What's Apple's stock price today? Keep it to one or two sentences.,done
+29,tool_search_s1_pT05_r02.pcapng,search,T05,2,on,What's the current price of Bitcoin? Keep it to one or two sentences.,done
+30,tool_static_s1_pT07_r02.pcapng,static,T07,2,on,Where does I-85 start and end? Keep it to one or two sentences.,done
+31,tool_static_s1_pT08_r02.pcapng,static,T08,2,on,What year did the first iPhone come out? Keep it to one or two sentences.,done
+32,tool_search_s1_pT04_r02.pcapng,search,T04,2,on,What's the biggest news story today? Keep it to one or two sentences.,done
+33,tool_search_s1_pT02_r02.pcapng,search,T02,2,on,Who won the most recent Braves game? Keep it to one or two sentences.,done
+34,tool_search_s1_pT08_r02.pcapng,search,T08,2,on,What's the newest iPhone model? Keep it to one or two sentences.,done
+35,tool_static_s1_pT01_r02.pcapng,static,T01,2,on,What's Atlanta's weather usually like in October? Keep it to one or two sentences.,done
+36,tool_search_s1_pT01_r02.pcapng,search,T01,2,on,What's the weather in Atlanta right now? Keep it to one or two sentences.,done

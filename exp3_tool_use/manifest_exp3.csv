@@ -1,0 +1,37 @@
+file,experiment,class,prompt_id,speaker,rep,date_time,network,client_version,search_setting,search_observed,reply_words,notes
+base_s1_pB02_r01.pcapng,base,base,B02,S1,1,2026-10-24 22:35:10,wired ethernet,156.0.8078.48,on,N,5,sitting 1
+base_s1_pB01_r01.pcapng,base,base,B01,S1,1,2026-10-24 22:52:09,wired ethernet,156.0.8078.48,on,N,8,sitting 1
+base_s1_pB04_r01.pcapng,base,base,B04,S1,1,2026-10-24 22:55:13,wired ethernet,156.0.8078.48,on,N,10,sitting 1
+base_s1_pB03_r01.pcapng,base,base,B03,S1,1,2026-10-24 22:56:23,wired ethernet,156.0.8078.48,on,N,1,sitting 1
+tool_static_s1_pT01_r01.pcapng,tool,static,T01,S1,1,2026-10-24 22:58:19,wired ethernet,156.0.8078.48,on,N,47,sitting 1
+tool_search_s1_pT02_r01.pcapng,tool,search,T02,S1,1,2026-10-24 23:00:15,wired ethernet,156.0.8078.48,on,Y,33,sitting 1
+tool_search_s1_pT03_r01.pcapng,tool,search,T03,S1,1,2026-10-24 23:03:21,wired ethernet,156.0.8078.48,on,Y,41,sitting 1
+tool_search_s1_pT04_r01.pcapng,tool,search,T04,S1,1,2026-10-24 23:04:46,wired ethernet,156.0.8078.48,on,Y,55,sitting 1
+tool_search_s1_pT01_r01.pcapng,tool,search,T01,S1,1,2026-10-24 23:06:16,wired ethernet,156.0.8078.48,on,Y,32,sitting 1
+tool_static_s1_pT05_r01.pcapng,tool,static,T05,S1,1,2026-10-24 23:07:32,wired ethernet,156.0.8078.48,on,N,39,sitting 1
+tool_static_s1_pT02_r01.pcapng,tool,static,T02,S1,1,2026-10-24 23:08:53,wired ethernet,156.0.8078.48,on,N,33,sitting 1
+tool_static_s1_pT03_r01.pcapng,tool,static,T03,S1,1,2026-10-24 23:09:46,wired ethernet,156.0.8078.48,on,N,32,sitting 1
+tool_static_s1_pT06_r01.pcapng,tool,static,T06,S1,1,2026-10-24 23:10:39,wired ethernet,156.0.8078.48,on,N,50,sitting 1
+tool_search_s1_pT05_r01.pcapng,tool,search,T05,S1,1,2026-10-24 23:11:52,wired ethernet,156.0.8078.48,on,Y,27,sitting 1
+tool_search_s1_pT06_r01.pcapng,tool,search,T06,S1,1,2026-10-24 23:13:55,wired ethernet,156.0.8078.48,on,Y,56,sitting 1
+tool_search_s1_pT08_r01.pcapng,tool,search,T08,S1,1,2026-10-24 23:18:10,wired ethernet,156.0.8078.48,on,Y,37,sitting 1
+tool_static_s1_pT08_r01.pcapng,tool,static,T08,S1,1,2026-10-24 23:20:14,wired ethernet,156.0.8078.48,on,N,26,sitting 1
+tool_static_s1_pT04_r01.pcapng,tool,static,T04,S1,1,2026-10-24 23:21:37,wired ethernet,156.0.8078.48,on,N,42,sitting 1
+tool_search_s1_pT07_r01.pcapng,tool,search,T07,S1,1,2026-10-24 23:22:30,wired ethernet,156.0.8078.48,on,Y,48,sitting 1; Couldn't pull true live data
+tool_static_s1_pT07_r01.pcapng,tool,static,T07,S1,1,2026-10-24 23:23:42,wired ethernet,156.0.8078.48,on,N,41,sitting 1
+tool_search_s1_pT07_r02.pcapng,tool,search,T07,S1,2,2026-10-24 23:24:43,wired ethernet,156.0.8078.48,on,Y,50,sitting 1; Repeat of 19
+tool_search_s1_pT06_r02.pcapng,tool,search,T06,S1,2,2026-10-25 00:04:58,wired ethernet,156.0.8078.48,on,Y,59,sitting 1; repeat of 15
+tool_static_s1_pT04_r02.pcapng,tool,static,T04,S1,2,2026-10-25 00:07:02,wired ethernet,156.0.8078.48,on,N,49,sitting 1
+tool_static_s1_pT05_r02.pcapng,tool,static,T05,S1,2,2026-10-25 00:12:20,wired ethernet,156.0.8078.48,on,N,37,sitting 1
+tool_static_s1_pT02_r02.pcapng,tool,static,T02,S1,2,2026-10-25 00:13:45,wired ethernet,156.0.8078.48,on,N,24,sitting 1
+tool_static_s1_pT03_r02.pcapng,tool,static,T03,S1,2,2026-10-25 00:14:55,wired ethernet,156.0.8078.48,on,N,24,sitting 1
+tool_static_s1_pT06_r02.pcapng,tool,static,T06,S1,2,2026-10-25 00:15:59,wired ethernet,156.0.8078.48,on,N,44,sitting 1
+tool_search_s1_pT03_r02.pcapng,tool,search,T03,S1,2,2026-10-25 00:16:59,wired ethernet,156.0.8078.48,on,Y,40,sitting 1
+tool_search_s1_pT05_r02.pcapng,tool,search,T05,S1,2,2026-10-25 00:18:09,wired ethernet,156.0.8078.48,on,Y,30,sitting 1
+tool_static_s1_pT07_r02.pcapng,tool,static,T07,S1,2,2026-10-25 00:19:10,wired ethernet,156.0.8078.48,on,N,47,sitting 1
+tool_static_s1_pT08_r02.pcapng,tool,static,T08,S1,2,2026-10-25 00:21:39,wired ethernet,156.0.8078.48,on,N,26,sitting 1
+tool_search_s1_pT04_r02.pcapng,tool,search,T04,S1,2,2026-10-25 00:23:51,wired ethernet,156.0.8078.48,on,Y,63,sitting 1
+tool_search_s1_pT02_r02.pcapng,tool,search,T02,S1,2,2026-10-25 00:25:08,wired ethernet,156.0.8078.48,on,Y,35,sitting 1
+tool_search_s1_pT08_r02.pcapng,tool,search,T08,S1,2,2026-10-25 00:26:03,wired ethernet,156.0.8078.48,on,Y,49,sitting 1
+tool_static_s1_pT01_r02.pcapng,tool,static,T01,S1,2,2026-10-25 00:27:36,wired ethernet,156.0.8078.48,on,N,46,sitting 1
+tool_search_s1_pT01_r02.pcapng,tool,search,T01,S1,2,2026-10-25 00:28:35,wired ethernet,156.0.8078.48,on,Y,44,sitting 1
