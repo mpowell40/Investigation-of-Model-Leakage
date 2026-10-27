@@ -1,0 +1,8 @@
+{
+  "feature": "early_kb",
+  "below": true,
+  "label": "reply audio in first 1.5 s (KB)",
+  "threshold": 106.8,
+  "train_accuracy": 0.9166666666666666,
+  "train_captures": 48
+}

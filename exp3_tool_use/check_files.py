@@ -15,7 +15,8 @@ import common
 import pcaplib
 import plan_sitting
 
-TARGET = {"search": 32, "static": 32, "off": 32, "base": 16}
+TARGET = ({"search": 32, "static": 32, "off": 32, "base": 16} if plan_sitting.SET_B
+          else {"search": 32, "static": 32, "base": 16})
 
 
 def main():
@@ -74,7 +75,7 @@ def main():
     print("Progress:")
     for cls, target in TARGET.items():
         print(f"  {cls:<7} {counts.get(cls, 0):>3} / {target}")
-    print(f"  total   {sum(counts.values()):>3} / 112")
+    print(f"  total   {sum(counts.values()):>3} / {sum(TARGET.values())}")
 
     obs = Counter((r.get("class"), r.get("search_observed")) for r in rows)
     print("\nSearch indicator seen (labels follow what happened, not what was expected):")

@@ -9,11 +9,24 @@ Mirrors the two Wireshark checks in the protocol:
      speak, downstream bursts while Claude replies.
 """
 import argparse
+import ipaddress
 import sys
 from collections import Counter, defaultdict
 
 import common
 import pcaplib
+
+# Anthropic's published address blocks. Flows to these are Claude's; anything
+# else on port 443 is background traffic (OneDrive, Teams, browser, etc.).
+CLAUDE_NETS = [ipaddress.ip_network(n) for n in ("160.79.104.0/23", "2607:6bc0::/48")]
+
+
+def is_claude(addr):
+    try:
+        ip = ipaddress.ip_address(addr)
+    except ValueError:
+        return False
+    return any(ip in n for n in CLAUDE_NETS)
 
 
 def human(n):
@@ -40,8 +53,12 @@ def summarize(path):
     if not flows:
         return {"ok": False, "packets": len(pkts), "flows": 0}
 
-    key, top = max(flows.items(), key=lambda kv: kv[1]["bytes"])
+    claude = {k: v for k, v in flows.items() if is_claude(k[2][0])}
+    pool = claude or flows
+    key, top = max(pool.items(), key=lambda kv: kv[1]["bytes"])
     proto, client, server = key
+    background = sorted(((k, v["bytes"]) for k, v in flows.items() if k not in claude),
+                        key=lambda kv: -kv[1])
     t0 = min(p.ts for p in pkts)
     up, down = Counter(), Counter()
     for p in pkts:
@@ -60,8 +77,12 @@ def summarize(path):
         "duration": (top["last"] - top["first"]) if top["pkts"] > 1 else 0,
         "up": up, "down": down,
         "seconds": int(max(p.ts for p in pkts) - t0) + 1,
-        "others": sorted(((k, v["bytes"]) for k, v in flows.items() if k != key),
-                         key=lambda kv: -kv[1])[:4],
+        "found_claude": bool(claude),
+        "claude_bytes": sum(v["bytes"] for v in claude.values()),
+        "claude_others": sorted(((k, v["bytes"]) for k, v in claude.items() if k != key),
+                                key=lambda kv: -kv[1]),
+        "background": background[:4],
+        "background_bytes": sum(b for _, b in background),
     }
 
 
@@ -78,14 +99,26 @@ def print_report(path, pilot_protocol=""):
         return False
 
     print(f"\n1) Conversations ({s['flows']} port-443 flows)")
-    print(f"   Largest: {s['proto']}  {s['client'][0]}:{s['client'][1]} <-> "
+    if not s["found_claude"]:
+        print("   PROBLEM: no flow to Claude (Anthropic) addresses. Wrong adapter, or a VPN is on.")
+        print(f"   Largest flow instead: {s['proto']} {s['server'][0]}:{s['server'][1]}")
+        return False
+    print(f"   Claude voice flow: {s['proto']}  {s['client'][0]}:{s['client'][1]} <-> "
           f"{s['server'][0]}:{s['server'][1]}")
-    print(f"   {human(s['top_bytes'])}, {s['top_pkts']} packets, {s['duration']:.1f} s, "
-          f"{s['top_share']:.0%} of all port-443 bytes")
-    for (proto, c, srv), b in s["others"]:
-        print(f"   other: {proto} {srv[0]}:{srv[1]}  {human(b)}")
+    print(f"   {human(s['top_bytes'])}, {s['top_pkts']} packets, {s['duration']:.1f} s")
+    for (proto, c, srv), b in s["claude_others"]:
+        print(f"   other Claude flow: {proto} {srv[0]}:{srv[1]}  {human(b)}")
 
     ok = True
+    bg = s["background_bytes"]
+    if bg:
+        print(f"\n   Background (not Claude): {human(bg)} across "
+              f"{s['flows'] - 1 - len(s['claude_others'])} flows")
+        for (proto, c, srv), b in s["background"]:
+            print(f"     {proto} {srv[0]}:{srv[1]}  {human(b)}")
+        if bg > s["claude_bytes"]:
+            print("   WARNING: more background traffic than Claude traffic. Quit OneDrive, Teams,")
+            print("   Discord, Steam, other browsers and VPNs, then check again on the next capture.")
     pilot = (pilot_protocol or "").upper()
     if pilot in ("TCP", "UDP"):
         if s["proto"] == pilot:

@@ -1,0 +1,21 @@
+seq,file,class,prompt_id,rep,search_setting,prompt,status
+1,base_s1_pB02_r02.pcapng,base,B02,2,on,Count to five.,done
+2,base_s1_pB03_r02.pcapng,base,B03,2,on,Say the word banana.,done
+3,base_s1_pB01_r02.pcapng,base,B01,2,on,Say hello.,done
+4,base_s1_pB04_r02.pcapng,base,B04,2,on,What's two plus two?,done
+5,tool_static_s1_pT04_r03.pcapng,static,T04,3,on,What was the biggest news story of 1969? Keep it to one or two sentences.,done
+6,tool_search_s1_pT04_r03.pcapng,search,T04,3,on,What's the biggest news story today? Keep it to one or two sentences.,done
+7,tool_search_s1_pT01_r03.pcapng,search,T01,3,on,What's the weather in Atlanta right now? Keep it to one or two sentences.,done
+8,tool_static_s1_pT05_r03.pcapng,static,T05,3,on,Who created Bitcoin? Keep it to one or two sentences.,done
+9,tool_static_s1_pT07_r03.pcapng,static,T07,3,on,Where does I-85 start and end? Keep it to one or two sentences.,done
+10,tool_search_s1_pT05_r03.pcapng,search,T05,3,on,What's the current price of Bitcoin? Keep it to one or two sentences.,done
+11,tool_static_s1_pT06_r03.pcapng,static,T06,3,on,What was SpaceX's first rocket? Keep it to one or two sentences.,done
+12,tool_static_s1_pT02_r03.pcapng,static,T02,3,on,How many players are on a baseball team? Keep it to one or two sentences.,done
+13,tool_static_s1_pT03_r03.pcapng,static,T03,3,on,What year was Apple founded? Keep it to one or two sentences.,done
+14,tool_static_s1_pT08_r03.pcapng,static,T08,3,on,What year did the first iPhone come out? Keep it to one or two sentences.,done
+15,tool_search_s1_pT03_r03.pcapng,search,T03,3,on,What's Apple's stock price today? Keep it to one or two sentences.,done
+16,tool_search_s1_pT02_r03.pcapng,search,T02,3,on,Who won the most recent Braves game? Keep it to one or two sentences.,done
+17,tool_static_s1_pT01_r03.pcapng,static,T01,3,on,What's Atlanta's weather usually like in October? Keep it to one or two sentences.,done
+18,tool_search_s1_pT06_r03.pcapng,search,T06,3,on,When is the next SpaceX launch? Keep it to one or two sentences.,done
+19,tool_search_s1_pT07_r03.pcapng,search,T07,3,on,Are there traffic delays on I-85 right now? Keep it to one or two sentences.,done
+20,tool_search_s1_pT08_r03.pcapng,search,T08,3,on,What's the newest iPhone model? Keep it to one or two sentences.,done

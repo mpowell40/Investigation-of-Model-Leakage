@@ -16,12 +16,20 @@ from prompts import BASELINE, PAIRS, prompt_text
 # Sitting -> blocks, straight from the protocol's "Sittings by experiment" table.
 #   base = latency baseline (B01-B04), A = matched pairs, search ON,
 #   B = search OFF control (T01-T08 current-info only).
+#
+# SET_B: the current Claude web app has no web search toggle (Claude decides when
+# to search), so Set B can't be recorded as the protocol describes. With
+# SET_B = False, sittings 2 and 3 skip it (80 captures in total instead of 112).
+# Set it back to True if the team finds a client that still has the toggle.
+SET_B = False
+
 SCHEDULE = {
     1: [("base", 1), ("A", 1), ("A", 2)],
-    2: [("base", 2), ("A", 3), ("B", 1), ("B", 2)],
-    3: [("base", 3), ("A", 4), ("B", 3), ("B", 4), ("base", 4)],
+    2: [("base", 2), ("A", 3)] + ([("B", 1), ("B", 2)] if SET_B else []),
+    3: [("base", 3), ("A", 4)] + ([("B", 3), ("B", 4)] if SET_B else []) + [("base", 4)],
 }
-EXPECTED = {1: 36, 2: 36, 3: 40}          # 112 in total
+EXPECTED = ({1: 36, 2: 36, 3: 40} if SET_B          # 112 in total
+            else {1: 36, 2: 20, 3: 24})             # 80 in total
 PLAN_COLS = ["seq", "file", "class", "prompt_id", "rep",
              "search_setting", "prompt", "status"]
 

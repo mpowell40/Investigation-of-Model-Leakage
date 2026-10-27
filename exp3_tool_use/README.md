@@ -16,6 +16,7 @@ These scripts handle everything around that:
 | `plan_sitting.py --sitting N` | Prints the shuffled order for a sitting (`run` makes this automatically) |
 | `first_check.py FILE` | The 30-second first-file check (conversations + up/down I/O) |
 | `check_files.py` | The nightly check (files vs manifest, names, broken files, progress) |
+| `analyze.py` | Measures every capture and writes `results/exp3_report.html` + `results/exp3_features.csv` |
 
 Python 3.9+ standard library only. Nothing to `pip install`.
 
@@ -96,6 +97,71 @@ When a sitting is done:
 python check_files.py
 git add -A && git commit -m "Exp 3 sitting N" && git push
 ```
+
+## Analysis
+
+```
+python analyze.py
+```
+
+Open `results/exp3_report.html` in a browser. Sitting 3 is skipped automatically
+(held-out test set).
+
+**What it measures.** Only Claude's voice connection: the TCP WebSocket to
+Anthropic (`2607:6bc0::/48`, `160.79.104.0/23`) that carries audio both ways.
+Upstream it sends a ~20 ms audio frame 50 times a second whether or not you talk,
+so the packet *count* is flat. Your speech shows up as bigger frames
+(~145 B in silence, ~180 B+ while speaking). Claude's spoken reply is a
+downstream burst of ~20 KB per 0.25 s.
+
+| Feature | Meaning |
+|---|---|
+| `early_kb` | Reply audio received in the first 1.5 s |
+| `dip_s` | Longest stall inside the first 6 s of the reply |
+| `answer_latency_s` | Your speech end to the start of the main answer burst |
+| `latency_s` | Your speech end to the very first reply audio |
+
+**Sitting 1 result (32 search/static captures).** A static answer streams at full
+speed straight away. A search reply opens with a short spoken preamble, stalls
+while results come back, then catches up with a burst of up to ~60 KB per 0.25 s.
+
+| Rule | Searches caught | False alarms | Accuracy |
+|---|---|---|---|
+| `early_kb < 106.8` | 13/16 | 0/16 | 91% |
+| `dip_s > 0.15` | 12/16 | 1/16 | 84% |
+| `answer_latency_s > 1.58` | 9/16 | 0/16 | 78% |
+| `latency_s > 0.89` (first audio only) | 8/16 | 6/16 | 56% |
+
+Time to the *first* audio does not leak the search: Claude starts talking just as
+fast either way. The leak is in the shape of the first seconds of the reply.
+
+These thresholds are tuned on the same data they're scored on, so they're
+optimistic. To get an honest number:
+
+1. After sitting 2: `python analyze.py --freeze`. This picks the best rule
+   from sittings 1–2 and saves it to `results/frozen_rule.json`.
+2. Record sitting 3.
+3. `python analyze.py --include-test`. This scores the frozen rule once on sitting 3,
+   which it has never seen. Report this number.
+
+Dry run on sitting 1 (rule frozen on rep 1, scored on rep 2): 88%, 6/8 searches
+caught, 0/8 false alarms.
+
+## Deviation from the protocol: no Set B
+
+The current Claude web app has no web search toggle (Claude decides when to
+search), so Set B (same current-info prompts with search OFF) can't be recorded.
+`plan_sitting.py` has `SET_B = False`, so sittings 2 and 3 skip it:
+
+| Sitting | Captures |
+|---|---|
+| 1 | Baseline r01; Set A reps 1–2 (36) |
+| 2 | Baseline r02; Set A rep 3 (20) |
+| 3 (different day) | Baseline r03; Set A rep 4; baseline r04 (24) |
+
+Total 80 instead of 112. Set A alone still compares search against static
+answers on matched topics. If the team finds a client with the toggle, set
+`SET_B = True` before sitting 2's plan is created.
 
 ## Rules that matter
 
