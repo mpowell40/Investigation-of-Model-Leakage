@@ -1,0 +1,5 @@
+exp2_config.json
+*.dumpcap.log
+__pycache__/
+tts/
+playlists/
