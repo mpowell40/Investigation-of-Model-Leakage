@@ -6,8 +6,9 @@
 A playlist session (lang_<lang>_s<N>_pALL_r<NN>.pcapng) holds all 10 questions,
 asked in order L01..L10. Claude's replies show up as bursts of download packets,
 so the session is cut after each reply into 10 contiguous pieces (no packets
-dropped). A session is only split when exactly 10 replies are found; otherwise
-it's skipped with a message, since the question IDs couldn't be trusted.
+dropped). With fewer than 10 replies the session is skipped, since the question
+IDs couldn't be trusted; with more, the first 10 are used in order and the
+extras stay in the last piece.
 A single-question capture (..._pL07_r01.pcapng) is kept whole as one piece.
 
 Output, metadata only (time, size, direction; never payload):
@@ -134,10 +135,15 @@ def process(path):
     end_of_capture = packets[-1][0] + 1e-6
 
     if meta["pid"] == "ALL":
-        if len(replies) != len(QUESTIONS):
+        if len(replies) < len(QUESTIONS):
             print(f"  {path.name}: SKIPPED, found {len(replies)} replies, expected {len(QUESTIONS)}. "
                   f"Check the capture (e.g. a question Claude didn't answer).")
             return []
+        if len(replies) > len(QUESTIONS):
+            # Take the first 10 in order; the extras stay in the last piece's tail.
+            print(f"  {path.name}: note, found {len(replies)} replies; using the first {len(QUESTIONS)} "
+                  f"as {min(QUESTIONS)}-{max(QUESTIONS)}")
+            replies = replies[:len(QUESTIONS)]
         cuts = [0.0]
         for i, (_, r_end) in enumerate(replies):
             nxt = replies[i + 1][0] if i + 1 < len(replies) else end_of_capture
