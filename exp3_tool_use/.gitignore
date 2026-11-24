@@ -1,3 +1,5 @@
 exp3_config.json
 *.dumpcap.log
 __pycache__/
+processed/
+models/
